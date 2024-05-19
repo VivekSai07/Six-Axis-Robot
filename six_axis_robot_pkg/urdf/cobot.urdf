@@ -1,0 +1,236 @@
+<?xml version="1.0"?>
+<robot name="cobot">
+    <link name="base_link">
+        <visual>
+            <origin xyz="0.0 0.0 0.025" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="0.1" length="0.05"/>
+            </geometry>
+            <material name="red">
+                <color rgba="1.0 0.0 0.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.025" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="0.1" length="0.05"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="base_link__link1" type="revolute">
+        <origin xyz="0.0 0.0 0.05" rpy="0.0 0.0 0.0"/>
+        <parent link="base_link"/>
+        <child link="link1"/>
+        <axis xyz="0.0 0.0 1.0"/>
+        <limit lower="-3.14159" upper="3.14159" effort="1000.0" velocity="0.5"/>
+    </joint>
+
+    <link name="link1">
+        <visual>
+            <origin xyz="0.0 0.0 0.132" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="0.05" length="0.264"/>
+            </geometry>
+            <material name="blue">
+                <color rgba="0.0 0.0 1.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.132" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="0.05" length="0.264"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="link1__link2" type="revolute">
+        <origin xyz="0.0 0.1 0.214" rpy="0.0 0.0 0.0"/>
+        <parent link="link1"/>
+        <child link="link2"/>
+        <axis xyz="0.0 1.0 0.0"/>
+        <limit lower="-2.3" upper="2.3" effort="1000.0" velocity="0.5"/>
+    </joint>
+    
+    <link name="link2">
+        <visual>
+            <origin xyz="0.0 0.0 0.425" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="0.05" length="0.850"/>
+            </geometry>
+            <material name="green">
+                <color rgba="0.0 1.0 0.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.425" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="0.05" length="0.850"/>
+            </geometry>
+        </collision>
+    </link>
+
+
+    <joint name="link2__link3" type="revolute">
+        <origin xyz="0.0 -0.1 0.8" rpy="0.0 0.0 0.0"/>
+        <parent link="link2"/>
+        <child link="link3"/>
+        <axis xyz="0.0 1.0 0.0"/>
+        <limit lower="-3.14159" upper="3.14159" effort="1000.0" velocity="0.5"/>
+    </joint>
+    
+    <link name="link3">
+        <visual>
+            <origin xyz="0.0 0.0 0.340" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="0.05" length="0.680"/>
+            </geometry>
+            <material name="yellow">
+                <color rgba="1.0 1.0 0.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.340" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="0.05" length="0.680"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="link3__link4" type="revolute">
+        <origin xyz="0.0 0.1 0.630" rpy="0.0 0.0 0.0"/>
+        <parent link="link3"/>
+        <child link="link4"/>
+        <axis xyz="0.0 1.0 0.0"/>
+        <limit lower="-3.14159" upper="3.14159" effort="1000.0" velocity="0.5"/>
+    </joint>
+    
+    <link name="link4">
+        <visual>
+            <origin xyz="0.0 0.0 0.065" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="0.05" length="0.130"/>
+            </geometry>
+            <material name="red">
+                <color rgba="1.0 0.0 0.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.065" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="0.05" length="0.130"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="link4__link5" type="revolute">
+        <origin xyz="0.0 0.0 0.180" rpy="0.0 1.57 0.0"/>
+        <parent link="link4"/>
+        <child link="link5"/>
+        <axis xyz="1.0 0.0 0.0"/>
+        <limit lower="-3.14159" upper="3.14159" effort="1000.0" velocity="0.5"/>
+    </joint>
+    
+    <link name="link5">
+        <visual>
+            <origin xyz="0.0 0.0 0.035" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="0.05" length="0.170"/>
+            </geometry>
+            <material name="red">
+                <color rgba="1.0 0.0 0.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.035" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="0.05" length="0.170"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <!-- End Effector -->
+
+    <joint name="link5__tcp" type="revolute">
+        <origin xyz="0.0 0.0 0.120" rpy="0.0 0.0 0.0"/>
+        <parent link="link5"/>
+        <child link="tcp_connector"/>
+        <axis xyz="0.0 0.0 1.0"/>
+        <limit lower="-3.14159" upper="3.14159" effort="1000.0" velocity="0.5"/>
+    </joint>
+
+    <link name="tcp_connector">
+        <visual>
+            <origin xyz="0.0 0.0 0.015" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <box size="0.03 0.150 0.03"/>
+            </geometry>
+            <material name="blue">
+                <color rgba="0.0 0.0 1.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.015" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <box size="0.03 0.150 0.03"/>
+            </geometry>
+        </collision>
+    </link>
+
+
+    <joint name="tcp_gripper_right" type="prismatic">
+        <origin xyz="0.0 -0.065 0.03" rpy="0.0 0.0 0.0"/>
+        <parent link="tcp_connector"/>
+        <child link="gripper_right"/>
+        <axis xyz="0.0 1.0 0.0"/>
+        <limit lower="0" upper="0.060" effort="1000.0" velocity="0.5"/>
+    </joint>
+    
+    <link name="gripper_right">
+        <visual>
+            <origin xyz="0.0 0.0 0.05" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <box size="0.01 0.01 0.1"/>
+            </geometry>
+            <material name="rgreen">
+                <color rgba="0.0 1.0 0.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.05" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <box size="0.01 0.01 0.1"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="tcp_gripper_left" type="prismatic">
+        <origin xyz="0.0 0.065 0.03" rpy="0.0 0.0 0.0"/>
+        <parent link="tcp_connector"/>
+        <child link="gripper_left"/>
+        <axis xyz="0.0 1.0 0.0"/>
+        <limit lower="0" upper="-0.060" effort="1000.0" velocity="0.5"/>
+    </joint>
+    
+    <link name="gripper_left">
+        <visual>
+            <origin xyz="0.0 0.0 0.05" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <box size="0.01 0.01 0.1"/>
+            </geometry>
+            <material name="rgreen">
+                <color rgba="0.0 1.0 0.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.05" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <box size="0.01 0.01 0.1"/>
+            </geometry>
+        </collision>
+    </link>
+    
+
+    
+
+</robot>
